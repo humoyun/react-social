@@ -8,10 +8,44 @@ const express = require("express");
 const app = express();
 
 const authenticate = require("./utils/auth");
-const { getAllScreams, createScream } = require("./handlers/screams");
-const { signUp, login, uploadImage } = require("./handlers/users");
+const {
+  getAllScreams,
+  createScream,
+  getScream,
+  commentOnScream,
+  likeScream,
+  unlikeScream
+} = require("./handlers/screams");
+const {
+  signUp,
+  login,
+  uploadImage,
+  addUserDetails,
+  getAuthenticatedUser
+} = require("./handlers/users");
 
 // intercepts request and checks for token
+
+/**
+ *
+ */
+app.post("/signup", signUp);
+/**
+ *
+ */
+app.post("/login", login);
+/**
+ *
+ */
+app.post("/user/image", authenticate, uploadImage);
+/**
+ *
+ */
+app.post("/user", authenticate, addUserDetails);
+/**
+ *
+ */
+app.get("/user", authenticate, getAuthenticatedUser);
 
 /**
  *
@@ -24,13 +58,23 @@ app.post("/scream", authenticate, createScream);
 /**
  *
  */
-app.post("/signup", signUp);
+app.get("/screams/:screamId", getScream);
 /**
  *
  */
-app.post("/login", login);
+app.post("/screams/:screamId/comment", authenticate, commentOnScream);
+/**
+ *
+ */
+app.post("/screams/:screamId/like", authenticate, likeScream);
+app.post("/screams/:screamId/unlike", authenticate, unlikeScream);
 
-app.post("/user/image", uploadImage);
+// TODO
+// delete scream
+// like a scream
+// unlike a scream
+// comment on scream
+//
 
 exports.api = functions.https.onRequest(app);
 // exports.api = functions.region('europe-west1').https.onRequest(app);

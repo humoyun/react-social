@@ -32,4 +32,18 @@ const validateLoginData = user => {
   };
 };
 
-module.exports = { validateLoginData, validateSignUpData };
+const reduceUserDetails = data => {
+  let userDetails = {};
+  if (!isEmpty(data.bio)) userDetails.bio = data.bio;
+  if (!isEmpty(data.location)) userDetails.location = data.location;
+
+  if (!isEmpty(data.website)) {
+    if (data.website.trim().substring(0, 4) !== "http")
+      userDetails.website = `http://${userDetails.website.trim()}`;
+    else userDetails.website = data.website;
+  }
+
+  return userDetails;
+};
+
+module.exports = { validateLoginData, validateSignUpData, reduceUserDetails };
