@@ -1,9 +1,6 @@
-const functions = require("firebase-functions");
-// Create and Deploy Your First Cloud Functions
-// https://firebase.google.com/docs/functions/write-firebase-functions
-
 // no need for config as .firebasesc contains defaults config
 
+const functions = require("firebase-functions");
 const express = require("express");
 const app = express();
 
@@ -14,8 +11,10 @@ const {
   getScream,
   commentOnScream,
   likeScream,
-  unlikeScream
+  unlikeScream,
+  deleteScream
 } = require("./handlers/screams");
+
 const {
   signUp,
   login,
@@ -23,8 +22,6 @@ const {
   addUserDetails,
   getAuthenticatedUser
 } = require("./handlers/users");
-
-// intercepts request and checks for token
 
 /**
  *
@@ -39,16 +36,15 @@ app.post("/login", login);
  */
 app.post("/user/image", authenticate, uploadImage);
 /**
- *
+ * Update user details
  */
 app.post("/user", authenticate, addUserDetails);
 /**
  *
  */
 app.get("/user", authenticate, getAuthenticatedUser);
-
 /**
- *
+ * get all screams
  */
 app.get("/screams", getAllScreams);
 /**
@@ -66,14 +62,18 @@ app.post("/screams/:screamId/comment", authenticate, commentOnScream);
 /**
  *
  */
-app.post("/screams/:screamId/like", authenticate, likeScream);
-app.post("/screams/:screamId/unlike", authenticate, unlikeScream);
+app.get("/screams/:screamId/like", authenticate, likeScream);
+/**
+ *
+ */
+app.get("/screams/:screamId/unlike", authenticate, unlikeScream);
+/**
+ *
+ */
+app.delete("/screams/:screamId", authenticate, deleteScream);
 
 // TODO
 // delete scream
-// like a scream
-// unlike a scream
-// comment on scream
 //
 
 exports.api = functions.https.onRequest(app);

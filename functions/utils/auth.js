@@ -1,5 +1,7 @@
 const { admin, db } = require("./admin");
-
+/**
+ * intercepts request and checks for token
+ */
 module.exports = (req, res, next) => {
   let IDToken;
 
@@ -19,7 +21,7 @@ module.exports = (req, res, next) => {
     .then(decodedToken => {
       // req is passed to the next middleware so token is available in the next handler
       req.user = decodedToken;
-      console.log(decodedToken);
+      // console.log(decodedToken);
       return db
         .collection("users")
         .where("userId", "==", req.user.uid)
