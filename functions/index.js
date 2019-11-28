@@ -259,5 +259,5 @@ exports.onScreamDeleted = functions.firestore
       });
   });
 
-// exports.createNotificationOnFollow = functions.firestore.document(`/users/`);
-// exports.createNotificationOnUnfollow = functions.firestore.document(`/users/`);
+// exports.createNotificationOnFollow = functions.firestore.document(`users/${userId}`);
+// exports.createNotificationOnUnfollow = functions.firestore.document(`users/${userId}`);
