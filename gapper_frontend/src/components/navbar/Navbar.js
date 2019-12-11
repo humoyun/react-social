@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Icon } from "antd";
 // Pages
-import home from "../../views/home";
-import login from "../../views/login";
-import signup from "../../views/signup";
+import home from "../../views/Home";
+import login from "../../views/Login";
+import signup from "../../views/Signup";
 import "./Navbar.less";
 
 export class Navbar extends Component {
