@@ -25,6 +25,8 @@ export class Navbar extends Component {
           <span>Messages</span>
         </div>
 
+        <Icon type="twitter" />
+
         {/* <Content style={{ padding: "0 50px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
