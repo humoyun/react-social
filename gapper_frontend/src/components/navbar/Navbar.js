@@ -11,21 +11,29 @@ export class Navbar extends Component {
   render() {
     return (
       <div className="gapper-navbar">
-        <div key="1">
-          <Icon type="home" />
-          <span>Home</span>
-        </div>
-        <div key="2">Moments</div>
-        <div key="3">
-          <Icon type="notification" theme="filled" />
-          <span>Notifications</span>
-        </div>
-        <div key="4">
-          <Icon type="message" theme="filled" />
-          <span>Messages</span>
+        <div className="navbar-item">
+          <div className="item-box">
+            <Icon type="home" />
+            <span>Home</span>
+          </div>
+          <div className="item-box">Moments</div>
+          <div className="item-box">
+            <Icon type="notification" theme="filled" />
+            <span>Notifications</span>
+          </div>
+          <div className="item-box">
+            <Icon type="message" theme="filled" />
+            <span>Messages</span>
+          </div>
         </div>
 
-        <Icon type="twitter" />
+        <div className="navbar-item">
+          <Icon
+            type="twitter"
+            style={{ color: "#2196f3", fontSize: "2.2em" }}
+          />
+        </div>
+        <div className="navbar-item"></div>
 
         {/* <Content style={{ padding: "0 50px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>

@@ -1,8 +1,37 @@
 .gapper-navbar {
   display: flex;
+  align-items: center;
+  justify-content: center;
   height: 50px;
+  background-color: #2e4864;
 
-  div {
+  .navbar-item {
+    display: flex;
     flex: 1;
+    align-items: center;
+    justify-content: center;
+    color: @main-font-grey-color;
+
+    .item-box {
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      i {
+        font-size: 1.5em;
+        padding: 2px 5px;
+      }
+
+      span {
+        padding: 2px;
+      }
+
+      &:hover {
+        color: #2196f3;
+      }
+    }
   }
 }

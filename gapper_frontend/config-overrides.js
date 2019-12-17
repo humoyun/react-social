@@ -1,4 +1,7 @@
 const rewireLess = require("react-app-rewire-less-modules");
+const colors = require("./src/styles/colors");
+
+console.log(".. colors", colors);
 
 const {
   override,
@@ -6,19 +9,6 @@ const {
   fixBabelImports,
   addLessLoader
 } = require("customize-cra");
-
-// module.exports = function override(config, env) {
-//   config = rewireLess(config, env);
-
-//   // with loaderOptions
-//   config = rewireLess.withLoaderOptions({
-//     modifyVars: {
-//       "@primary-color": "#1890ff"
-//     }
-//   })(config, env);
-
-//   return config;
-// };
 
 function myOverrides(config) {
   // do stuff to config
@@ -28,13 +18,15 @@ function myOverrides(config) {
 module.exports = override(
   myOverrides,
   addDecoratorsLegacy(),
+
   fixBabelImports("import", {
     libraryName: "antd",
     libraryDirectory: "es",
     style: true
   }),
+
   addLessLoader({
     javascriptEnabled: true,
-    modifyVars: { "@primary-color": "#a50052" }
+    modifyVars: colors
   })
 );
